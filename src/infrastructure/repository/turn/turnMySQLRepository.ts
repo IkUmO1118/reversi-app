@@ -1,6 +1,6 @@
 import mysql from 'mysql2/promise';
-import { MoveGateway } from '../../../infrastructure/moveGateway';
-import { SquareGateway } from '../../../infrastructure/squareGateway';
+import { MoveGateway } from './moveGateway';
+import { SquareGateway } from './squareGateway';
 import { TurnGateway } from './turnGateway';
 import { Board } from '../../../domain/model/turn/board';
 import { toDisc } from '../../../domain/model/turn/disc';
