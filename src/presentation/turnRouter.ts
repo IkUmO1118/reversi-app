@@ -1,11 +1,24 @@
 import express from 'express';
-import { TurnService } from '../application/service/turnService';
+import { RegisterTurnUseCase } from '../application/useCase/RegisterTurnUseCase';
 import { Point } from '../domain/model/turn/point';
 import { toDisc } from '../domain/model/turn/disc';
+import { TurnMySQLRepository } from '../infrastructure/repository/turn/turnMySQLRepository';
+import { GameMySQLRepository } from '../infrastructure/repository/game/gameMySQLRepository';
+import { GameResultMySQLRepository } from '../infrastructure/repository/gameResult/gameResultMySQLRepository';
+import { FindLatestGameTurnByTurnCount } from '../application/useCase/findLatestGameTurnByTurnCountUseCase';
 
 export const turnRouter = express.Router();
 
-const turnService = new TurnService();
+const findLatestGameTurnByTurnCountUseCase = new FindLatestGameTurnByTurnCount(
+  new TurnMySQLRepository(),
+  new GameMySQLRepository(),
+  new GameResultMySQLRepository()
+);
+const registerTurnUseCase = new RegisterTurnUseCase(
+  new TurnMySQLRepository(),
+  new GameMySQLRepository(),
+  new GameResultMySQLRepository()
+);
 
 // DTO (Data Transfer Object)
 interface TurnGetResponseBody {
@@ -20,7 +33,7 @@ turnRouter.get(
   async (req, res: express.Response<TurnGetResponseBody>) => {
     const turnCount = parseInt(req.params.turnCount);
 
-    const output = await turnService.findLatestGameTurnByTurnCount(turnCount);
+    const output = await findLatestGameTurnByTurnCountUseCase.run(turnCount);
 
     const responseBoby = {
       turnCount: output.turnCount,
@@ -49,7 +62,7 @@ turnRouter.post(
     const disc = toDisc(req.body.move.disc);
     const point = new Point(req.body.move.x, req.body.move.y);
 
-    await turnService.registerTurn(turnCount, disc, point);
+    await registerTurnUseCase.run(turnCount, disc, point);
 
     res.status(201).end();
   }
