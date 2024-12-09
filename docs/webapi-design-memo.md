@@ -1,18 +1,22 @@
-# API 設計メモ
+# API Design Notes
 
-## 対戦を開始する
+## Start a Match
 
-「対戦」を登録する
+Registers a new match.
 
-POST /api/games
+**Endpoint**:  
+`POST /api/games`
 
-## 現在の盤面を表示する・勝敗を確認する
+---
 
-指定したターン数の「ターン」を取得する
+## Display the Current Board State & Check the Winner
 
-GET /api/games/latest/turns/{turnCount}
+Retrieves the specified turn of the latest match.
 
-レスポンスボディ
+**Endpoint**:  
+`GET /api/games/latest/turns/{turnCount}`
+
+**Response Body**:
 
 ```json
 {
@@ -32,13 +36,14 @@ GET /api/games/latest/turns/{turnCount}
 }
 ```
 
-## 石を打つ
+## Place a Stone
 
-「ターン」を登録する
+Register a "turn".
 
-POST /api/games/latest/turns
+**Endpoint**:  
+`POST /api/games/latest/turns`
 
-リクエストボディ
+**Request Body**:
 
 ```json
 {
@@ -51,13 +56,14 @@ POST /api/games/latest/turns
 }
 ```
 
-## 自分の対戦結果を表示する
+## View My Match Results
 
-「対戦」の一覧を取得する
+Retrieve a list of "games".
 
-GET /api/games
+**Endpoint**:  
+`GET /api/games`
 
-レスポンスボディ
+**Response Body**:
 
 ```json
 {

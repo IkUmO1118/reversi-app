@@ -1,26 +1,28 @@
-# 機能一覧
+# Feature List
 
-## ユースケースごとの機能一覧
+## Feature Overview by Use Case
 
-- 「対戦する」ユースケース
-  - 対戦を開始する
-  - 現在の盤面を表示する
-  - 石を打つ
-  - 勝敗を確認する
-- 「自分の過去の対戦結果を確認する」ユースケース
-  - 自分の対戦結果を表示する
+- **"Play a Match" Use Case**
 
-## 「石を打つ」機能について
+  - Start a match
+  - Display the current board state
+  - Place a stone
+  - Check the winner
 
-- 内部には以下のような処理がありそう
-  - 選ばれた位置に石は打てるのかチェックする
-  - 石を打つ
-  - ひっくり返す
-  - 次はどちらの番か判断する
-    - ※打てない場合は自動でスキップする
-  - (勝敗が決まったら) 対戦を終了する
+- **"View Past Match Results" Use Case**
+  - Display past match results
 
-## プレイヤーについて
+## About the "Place a Stone" Feature
 
-- プレイヤーの登録機能は設けない
-  - このアプリケーションは、自分の PC で立ち上げて、自分一人だけ遊べることにする
+- This feature likely includes the following processes:
+  - Check if a stone can be placed in the selected position
+  - Place the stone
+  - Flip stones as needed
+  - Determine whose turn is next
+    - _If a player cannot make a move, skip their turn automatically_
+  - (If the game is over) End the match
+
+## About Players
+
+- No player registration functionality will be implemented
+  - This application is designed to be run locally on your PC for single-player use
