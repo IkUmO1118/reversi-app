@@ -70,27 +70,27 @@ Follow the steps below to clone the repository and start the application:
 
         git clone https://github.com/IkUmO1118/reversi-app
 
-2.  **Install dependencies**
+2.  **Install dependencies**  
     Install the required npm packages:
 
         npm install
 
-3.  **Start Docker containers**
+3.  **Start Docker containers**  
     Use Docker Compose to start the necessary containers:
 
         docker compose up -d
 
-4.  **Connect to MySQL**
+4.  **Connect to MySQL**  
     Run the script to connect to the MySQL database:
 
         bash ./bin/connect_mysql.sh
 
-5.  **Create tables**
+5.  **Create tables**  
     Load the DDL to create the required database tables:
 
         bash ./bin/load_ddl.sh
 
-6.  **Start the application**
+6.  **Start the application**  
     Run the following command to start the application:
 
         npm run start
